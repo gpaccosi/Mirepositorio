@@ -1,0 +1,150 @@
+
+Creación de un README
+Normalmente en los proyectos en GitHub dentro de los repositorios se encuentra un archivo README que se usa normalmente para describir el contenido del repositorio, el proyecto en el que estamos trabajando. Si queremos crear uno para nuestro repositorio local usaremos este comando:
+***********
+gedit README
+**************
+
+No olvides guardar los cambios una vez hayas escrito la descripción de tu proyecto.
+
+Añadiendo archivos
+Es importante que antes de subir los cambios a GitHub o un servidor Git, tendremos que indexar todos los archivos del repositorio local. En esta caso vamos a tener que indexar nuestro archivo README y cualquier archivo que hayamos creado dentro y que queramos subir. Para agregar los archivos al índice usamos este comando:
+*********************
+git add README
+git add archivodeseado
+********************
+El comando puede ser utilizado para agregar tanto archivos como carpetas al índice. Si queremos agregar todos los archivos podemos usar simplemente git add y no tendremos que especificar ningún archivo o carpeta.
+
+Hacer un commit
+Cuando hayamos modificado los archivos que queramos podemos hacer lo que se denomina un commit. Esto no es más que añadir un mensaje que indique qué cambios hemos realizado, lo haremos con el siguiente comando:
+******************
+git commit -m "Aqui iria el mensaje explicando los cambios"
+*******************
+
+Creación del repositorio en GitHub y subida
+Es importante llegados a este paso que tengamos en cuenta que el nombre del repositorio en GitHub debe tener el mismo nombre que el repositorio local. Debemos entrar en la web de GitHub y crear el repositorio con el mismo nombre. Una vez realizado este paso ya podremos conectarnos al repositorio remoto desde la ventana de comandos:
+
+******************
+git remote add origin https://github.com/gpaccosi/Mirepositorio.git
+******************
+
+Tuve problemas y obtuve el sig. mensaje: 
+********************
+fatal: remote origin already exists.
+***********************************
+solución: 
+***************************
+ git remote rm origin 
+************************
+y volver a ejecutar la sig. línea:
+******************************
+git remote add origin https://github.com/gpaccosi/Mirepositorio.git
+***************************
+
+y luego escribir:
+************************
+git push origin master
+************************
+me pide usuario y clave
+*******************************
+Username for 'https://github.com': gpaccosi
+Password for 'https://gpaccosi@github.com': 
+***********************************
+nuevamente tuve problemas, obtuve el sig. mensaje:
+****************************************
+remote: Repository not found.
+fatal: repository 'https://github.com/miusuario/Mirepositorio.git/' not found
+*******************************************
+Aquí la solución:
+******************************************
+git config --global user.name "gpaccosi"
+***************************
+luego:
+*********************
+ git config --global user.email "gpaccosi@yahoo.com"
+y luego
+**********************************
+ ssh-keygen 
+*********************************
+me apareció lo siguiente
+************************
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/gustavo/.ssh/id_rsa): Mirepositorio 
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in Mirepositorio.
+Your public key has been saved in Mirepositorio.pub.
+The key fingerprint is:
+SHA256:WqU/EdCM5AiGPYmMnyC6zIUMDFXHgDPp+y3qZrkisC8 gustavo@gustavo
+The key's randomart image is:
++---[RSA 2048]----+
+|++.B=+..o+       |
+|=.O.+o.o..o      |
+|=+.+ .. . o      |
+|.o+.     o .     |
+|o...    S .      |
+|oo.    o . .     |
+|.. o ..   o      |
+|E + o .    .     |
+|.B=o .           |
++----[SHA256]-----+
+***********************************
+y siguió así:
+*******************
+ git remote add origin https://github.com/gpaccosi/Mirepositorio.git
+fatal: remote origin already exists.
+gustavo@gustavo:~/Mirepositorio$ git remote rm origin 
+gustavo@gustavo:~/Mirepositorio$ git remote add origin https://github.com/gpaccosi/Mirepositorio.git
+gustavo@gustavo:~/Mirepositorio$ git push origin master
+Username for 'https://github.com': gpaccosi
+Password for 'https://gpaccosi@github.com': 
+Counting objects: 4, done.
+Delta compression using up to 2 threads.
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (4/4), 984.95 KiB | 0 bytes/s, done.
+Total 4 (delta 0), reused 0 (delta 0)
+To https://github.com/gpaccosi/Mirepositorio.git
+ * [new branch]      master -> master
+*************************************************
+
+OTRA PAGINA:
+
+La solución la obtuve del sig. texto:
++***************************
+Crear git y enlazar proyectos de Github en Ubuntu
+Vamos a ver de una forma muy sencilla cómo podemos instalar Github y enlazarlo con nuestro Ubuntu para poder subir nuestros proyectos:
+
+Para instalar Github:
+
+sudo apt-get install git xclip git-core git-gui git-do 
+git config --global user.name "nick" -- Configura el nombre de usuario, comillas incluidas
+git config --global user.email "mail@mail.dom" -- Configura el email, comillas incluidas
+
+Para enlazarlo al ordenador, lo haremos mediante ssh:
+
+ssh-keygen -- Obtiene una clave ssh
+cat ~/.ssh/id_rsa.pub -- Muestra la clave
+La copiamos y para agregarla vamos a https://github.com/settings/ssh
+
+Para crear un proyecto:
+
+cd ruta_de_la_carpeta_del_proyecto
+git init -- Para iniciarlizar la primera vez
+Subir ficheros:
+git add . -- Agrega todos los ficheros de la carpeta
+git add nombre-del-archivo.extensión -- Agrega únicamente ese fichero
+git commit -m 'Comentario' -- Comentario en la subida
+git remote add origin git@github.com:nick/nombre_repositorio.git -- Indicamos usuario y repositorio
+Si da el fallo "fatal: remote origin already exists": 
+git remote rm origin 
+Volver a ejecutarlo
+git push -f origin master -- Subimos
+
+Si queremos eliminar un fichero:
+git rm nombre-del-archivo.extensión
+
+y con estos sencillos pasos ya tenemos todo listo para usar Github y poder subir nuestros proyectos al repositorio :)
+
+Aprovecho para dejar por aquí el mío (que me lo he creado mientras hacía el tutorial este) en el que iré poniendo mis pequeños proyectos poco a poco, ahora mismo únicamente tiene un proyecto del juego del memory programado en Fortran 90, pero pronto habrá mas!!!!! :)
+******************
+en la página: http://franciscodelgadoalmiron.blogspot.com.ar/2014/03/crear-git-y-enlazar-proyectos-de-github.html
