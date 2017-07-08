@@ -1,0 +1,657 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath} 
+\usepackage{amsfonts} 
+\usepackage[latin1]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{latexsym}
+\usepackage{verbatim}
+\usepackage{enumerate}
+%\usepackage{enumitem} 
+\usepackage[a4paper, total={170mm,257mm},left=1cm, right=1cm, top=2cm, bottom=1cm,includefoot]{geometry}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage{setspace}
+\usepackage{parskip}
+\usepackage{graphicx} 
+%\usepackage{multirow}
+%\usepackage{multicol}
+%\usepackage{listings}
+
+
+%% para hacer cajas
+\usepackage{xcolor}
+\usepackage{fancybox}
+%%------------------------------------------
+%% Enumerate personalizado
+\usepackage{ntheorem}
+\theorembodyfont{\normalfont}
+\newtheorem{pro}{Problema}
+
+%\renewcommand{\labelitemi}{\Problema{1}}
+
+
+\setcounter{MaxMatrixCols}{10}
+%\topmargin-2.2cm
+%\oddsidemargin -1,5cm
+%\evensidemargin -1,5cm
+%\textwidth18cm
+%\textheight 27cm
+\def\RR{\mathbb R}
+\def\NN{\mathbb N}
+\let\d=\displaystyle
+
+%%------------------------------------------
+\pagestyle{empty}
+\pagestyle{fancy}
+\fancyhf{}
+
+\lhead{III EMASUNGS}  \rhead{U.N.G.S} 
+\lfoot[\scriptsize{\textit{Cassetti J., Paccosi G., Pereyra V. y Delgadino D.}}]{\scriptsize{\textit{Cassetti J., Paccosi G., Pereyra V. y Delgadino D.}}}
+\rfoot[\scriptsize{\textit{pág. \thepage}}]{\scriptsize{\textit{pág. \thepage}}}
+\renewcommand{\footrulewidth}{0.5pt}
+
+%%---------------------------------------------
+%% tikz
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+
+\tikzstyle{decision} = [diamond, draw, fill=green!20, text width=4.5em, text badly centered, node distance=4cm, inner sep=0pt]
+\tikzstyle{block} = [rectangle, draw, fill=blue!10, text width=5em, text centered, rounded corners, minimum height=4em]
+\tikzstyle{line} = [draw, -latex']
+\tikzstyle{cloud} = [draw, ellipse,fill=red!10, node distance=3cm,minimum height=2em]
+\tikzstyle{blank} = [node distance=1.5cm]
+
+%%---------------------------------------------
+
+\begin{document}
+	
+	\begin{center}
+		\LARGE
+		Taller \textbf{Simulando y conjeturando con Rproject}
+		
+		\large Primer Encuentro
+	
+	\end{center}
+
+
+
+\section{Experimentos preliminares}
+	
+El objetivo de esta práctica es proporcionar un punto de partida para trabajar con R.
+Aunque es un software orientado al análisis estadístico, un primer contacto nos permitirá pensar a R como una calculadora totalmente equipada.
+Como calculadora básica, realiza las cuatro operaciones matemáticas simples. Como calculadora científica maneja números complejos, raíces cúbicas, etc.
+En un segundo momento abordaremos a R como calculadora programable:  almacena, recupera datos, compara, etc. 
+
+\bigskip
+
+R trabaja con programas hechos por los usuarios, es decir, que éstos deberán escribir un conjunto de instrucciones bien definidas que permitirán llevar a cabo una actividad mediante pasos sucesivos ejecutados por el ordenador. Por lo tanto trabajaremos con un lenguaje que nos permitirá comunicarnos con la computadora.
+Como todo lenguaje tiene sus propias reglas gramaticales, si éstas son bien escritas, R ejecutará lo que nosotros le pidamos que haga, si algo llegara a andar mal, el problema estará ubicado entre la silla y la computadora, es decir, en el que programa. Comencemos el trabajo.
+ 
+% Veamos con más detalles cómo trabajar en R.
+%Podemos decir entonces que la programación es un lenguaje y como tal tiene sus propias 
+%reglas gramaticales; por lo tanto, cuando escribimos debemos hacerlo con una cierta lógica.
+%A eso vamos a ir paso a paso.\newline
+%Para llegar a un resultado o solución buscada, el ordenador 
+%debe hacer un conjunto de operaciones aritméticas, de comparación, lógicas y de toma de 
+%decisiones. 
+
+
+%Ya vimos cuál es la gramática para las operaciones con números, vectores y matrices.
+%Comenzaremos por programas básicos e iremos creciendo en complejidad.
+\bigskip
+
+
+\subsection{Operaciones con números reales}
+
+\begin{pro} 
+	Escriba y ejecute las siguientes sentencias; luego analice los resultados mostrados en pantalla:
+\end{pro}
+	\begin{enumerate}[a)]
+	\item 3+4
+	\item 1-2
+	\item 2*6.3
+	\item 2/5
+	\item 15\%/\%4
+	\item 5 \%\% 2 ; 16 \%\% 4  ; 25 \%\% 7. ¿Qué estamos haciendo con esta instrucción?
+	\end{enumerate}
+
+\subsection{Funciones}
+
+\begin{pro} 
+	Las siguientes líneas de comandos actúan como funciones matemáticas. Averigüe cuáles son ellas.
+\end{pro}
+	\begin{enumerate}[a)]
+	\item \texttt{abs(-3) ; abs(3)}
+	\item \texttt{trunc(1/4)}
+	\item \texttt{floor(1/4)}
+	\item \texttt{ceiling(1/4)}
+	\item \texttt{round(1/3,4)}
+	\item \texttt{sqrt(25)} 
+	\item \texttt{5\textasciicircum2}
+	\item \texttt{exp(1), exp(0); exp(-1)}
+	\end{enumerate} 
+
+
+\subsection{Sucesiones} 
+
+
+\begin{pro} 
+	Escriba las siguientes instrucciones, ejecútelas, observe con detalles qué muestra la pantalla y luego responda las preguntas que aparecen más abajo. 
+\end{pro}
+
+\begin{enumerate}[a)]
+ \item \texttt{1:7}
+ \item \texttt{seq(1,7)}
+ \item \texttt{seq(1,7,by=0.5)}
+ \item \texttt{seq(1,6,length=10)}
+\end{enumerate}
+¿Qué diferencia hay entre \texttt{a:b} y \texttt{seq(a,b)}? Pruebe con distintos valores de \texttt{a} y \texttt{b}. 
+
+\bigskip
+
+
+\begin{pro}  
+	Más sobre secuencias:
+\end{pro} 
+	
+\begin{enumerate}[a)]
+ \item \texttt{rep(1,5)}
+ \item \texttt{rep(c(1,2),5)}
+ \item \texttt{rep(1:4,2)}
+ \item \texttt{rep(1:3,c(1,4,5))}
+\end{enumerate}
+
+\subsection{Variables y vectores } 
+
+\subsubsection{\textit{Variables}} 
+Al igual que en matemática, una variable puede tomar diferentes valores reales, 
+así, si queremos asignar a la variable x el valor 2 escribiremos lo siguiente:
+
+\texttt{x<-2}
+
+Una vez asignado el valor podremos operar con él, como por ejemplo se muestra a 
+continuación (escriba en su computadora y ejecute las líneas de comandos):
+
+\texttt{x\textasciicircum2}
+
+Si escribimos ahora
+
+\texttt{x<-5}
+
+la variable tomó otro valor y se ``olvidó'' que anteriormente le habíamos asignado 
+el 2.
+
+\bigskip
+
+\begin{pro}  
+	Ejecute:
+\end{pro}
+
+\begin{enumerate}[a)]
+	\item \texttt{n<-1234}
+	\item \texttt{n<-n/2}
+	\item \texttt{n<-n/2}
+\end{enumerate}	
+	
+	¿Qué valor toma \texttt{n} al ejecutar ambas sentencias?
+
+
+\subsubsection{\textit{Vectores}}
+Si queremos escribir un vector, por ejemplo, el (1,3,5,7) tipeamos lo siguiente:
+
+\texttt{c(1,3,5,7)} 
+
+A su vez, a dicho vector lo podemos "guardar" en una variable: 
+
+\texttt{x<-c(1,3,5,7)} 
+
+\bigskip
+
+\begin{pro} 
+	 Tipee las siguientes instrucciones, ejecútelas y observe lo que muestra la pantalla.
+\end{pro}
+
+\begin{enumerate}[a)]
+ \item \texttt{x[1]}
+ \item \texttt{x[-1]}
+ \item \texttt{x[6]}
+ \item \texttt{x[1:3]} 
+ \item \texttt{[3:4]}
+ \item \texttt{x[1]=-3} 
+ \item \texttt{x+x}  
+ \item \texttt{2*x}
+ \item \texttt{x\textasciicircum2}
+ \item \texttt{x\textasciicircum3}
+ \item \texttt{length(x)}  
+\end{enumerate}
+
+\subsection{Más Funciones}
+
+\begin{pro} 
+	Para el vector \texttt{x<-c(1,-3,5,5,7)} escriba las siguientes instrucciones:
+\end{pro}
+
+\begin{enumerate}[a)]
+\item \texttt{length(x)} 
+\item \texttt{sort(x)} 
+\item \texttt{sum(x)} 
+\item \texttt{mean(x)} 
+\item \texttt{max(x)} 
+\item \texttt{min(x)} 
+\item \texttt{duplicated(x)}. Notar que esta función retorna un valor lógico. ¿En qué casos devuelve \texttt{TRUE} o \texttt{FALSE}?
+\item \texttt{anyDuplicated(x)}. Esta función devuelve la posición en el vector en la que se encuentra el primer valor duplicado. ¿Qué retorna si el vector no posee valores duplicados?
+\end{enumerate}
+
+
+\subsection{Operadores comparativos} 
+
+%Muchas veces interesa detectar ciertos eventos en los objetos matemáticos bajo estudio. 
+%Así por ejemplo, si estamos analizando crecimiento y decrecimiento de una función 
+%derivable, nos interesa estudiar el signo de la función derivada, es decir, comparar el valor de la derivada con cero. Los siguientes comandos se presentan bajo este contexto: el de la comparación. 
+
+\begin{pro} 
+	Escriba las siguientes instrucciones e indique qué devuelve en cada caso:
+\end{pro} 
+
+\begin{enumerate}[a)]
+ \item \texttt{2==3} (Igual) 
+ \item \text{2!=2} (Diferente de ) 
+ \item \texttt{2<3} (Menor que) 
+ \item \texttt{2<=3} (Menor o igual)
+ \item \texttt{2>3} (Mayor que) 
+ \item \texttt{2>=3} (Mayor o igual que)
+\end{enumerate}
+
+\bigskip
+
+\begin{pro} 
+	Para el vector x$<$-c(1,3,-5,7,-1), tipee:
+\end{pro}
+
+\begin{enumerate}[a)]
+ \item x == 1
+ \item x$>$=3
+ \item x!=-1
+\end{enumerate}
+
+\subsection{Programación}
+
+Comenzaremos con instrucciones sencillas y luego daremos más complejidad a nuestro asunto.
+
+\noindent
+\textit{\textbf{Mostrar resultados en la pantalla}}\newline
+Queremos que los resultados se muestren en pantalla. Tenemos dos maneras de hacerlo.
+%Por ejemplo, si asignamos un valor obtenido de una cuenta a la variable x y , $x<-2+3^2$. 
+%podemos escribir
+Escriba y ejecute las siguientes dos líneas: 
+
+\texttt{x<-2+3\textasciicircum2} 
+\texttt{x} 
+
+Pruebe ahora con el siguiente par de sentencias: 
+
+\texttt{x<-2+3\textasciicircum2}\\
+\texttt{message(``El resultado buscado es'',x)}\\
+\texttt{print(``El resultado buscado es'')}\\
+\texttt{print(x)}
+
+\subsection{Bucles}
+
+\subsubsection{\texttt{for}}
+
+El comando \texttt{for} sirve para construir bucles con una cantidad fija de iteraciones.
+
+\begin{center}
+\shadowbox{
+	\parbox[c][3cm][c]{8cm}{
+		\texttt{for(}\textit{i in recorrido}\texttt{)}\\
+		\{\\
+		\textit{Bloque de código que queremos \newline
+			que se ejecute en cada iteración.}\\
+		\}
+	}
+}
+\end{center}
+
+\subsubsection{\texttt{While}}
+
+El comando \texttt{while} sirve para construir bucles cuya continuidad depende de que se cumple una condición. La estructura es la siguiente:
+
+\begin{center}
+\shadowbox{
+	\parbox[c][3cm][c]{8cm}{
+		\texttt{while(}\textit{condición}\texttt{)}\\
+		\{\\
+		\textit{Bloque de código que queremos \newline
+			que se ejecute en cada iteración.}\\
+		\}
+	}
+}
+\end{center}
+
+
+
+Ejemplo: Calcular el factorial de 5
+
+Idea: En cada iteración se van a realizar las siguientes operaciones\\
+1*1=1\\
+1*2=2\\
+2*3=6\\
+6*4=24\\
+24*5=120\\
+
+Observar que será necesario utilizar dos variables. Una de éstas realizará un recorrido entre 2 y 5 mientras que la otra irá guardando los resultados parciales que se obtienen al final de cada iteración. Finalmente, al completar el ciclo, en esta segunda variable se tiene el factorial del número que se está buscando.\\
+
+\texttt{factorial=1}\\
+\texttt{for(i in 1:5)\{}
+
+   \texttt{factorial = factorial * i}
+
+\}
+
+Notar que la cantidad de iteraciones son fijas porque se está calculando el factorial de un número en particular. 
+Esta situación cambia con la siguiente variante. Suponga que se quiere calcular el factorial de un número, el mayor posible, que no sea superior a 1200. En principio no se sabe cuál es el número, por lo tanto, la cantidad de iteraciones no es fija. En cada una de éstas vamos a calcular el factorial de 1,2,3, \ldots mientras se cumpla la condición requerida.
+
+\bigskip
+
+\begin{pro}
+	Ejecute el siguiente código y observe que devuelve
+\end{pro}
+
+\texttt{n=1}\\
+\texttt{factorial=1}\\
+\texttt{while(factorial<1200)\{}
+
+\texttt{factorial = factorial * n}\\
+\texttt{n= n + 1}
+
+\}\\
+
+Una vez que se interrumpe el ciclo, ¿qué valores tienen las variables $n$ y factorial?
+
+\bigskip
+
+\begin{pro}
+	 Dado un número entero positivo n, calcule la suma $1 + 2 + 3 + \ldots + n$, utilizando un ciclo y una variable para acumular la sumatoria.
+\end{pro}
+
+\bigskip
+
+\begin{pro} 
+	Utilice un bucle para obtener el primer dígito de un número.\\ 
+\end{pro}
+\textit{Sugerencia:} realice la división entera por 10 y determine qué condición se debe cumplir para continuar dividiendo. 
+ 
+
+\noindent
+\textbf{Bifurcaciones y Bucles}\newline
+BIFURCACIONES \newline
+Para la toma de decisiones existe una estructura gramatical
+que permite 
+en base a
+un resultado o dato previo hacer una u otra operación
+(ejecutar una orden u otra), por 
+ejemplo, necesitamos saber
+si el determinante de una matriz cuadrada es igual a cero o no para poder determinar si tiene 
+inversa.
+Antes de escribir las sentencias, veamos el proceso que hará el programa esquemáticamente 
+mediante lo que se denomina \textit{
+diagrama de flujo}:
+
+\begin{center}
+\begin{tikzpicture}[node distance = 2cm, auto]
+% Place nodes
+\node [block] (init) {Ingrese una clave};
+\node [blank, below of=init] (blanco) {};
+\node [decision, below of=init] (decide) {¿Es la clave correcta?};
+\node [block, left of=decide, node distance=4cm] (update) {Ingrese otra clave};
+\node [block, below of=decide, node distance=4cm] (Fin) {Bienvenido};
+
+% Draw edges
+\path [line] (init) -- (decide);
+\path [line] (decide) -- node {Si}(Fin);
+\path [line] (decide) -- node [near start] {no} (update);
+\path [line] (update) |- (blanco);
+\end{tikzpicture}
+\end{center}
+
+Veamos con un ejemplo cómo escribir en el lenguaje de R: \newline
+
+\bigskip
+
+A $<$-matrix(data=5, nr=2, nc=2) \newline
+detA $<$- A[1,1]*A[2,2] - A[1,2]*A[2,1] \newline
+if(detA != 0) \{message(``A tiene inversa``)\} else  \{message(``A no tiene  inversa``)\} \newline
+
+\bigskip
+
+\begin{pro}
+	Escriba programas para cada uno de los casos que se dan a continuación haciendo que R muestre siempre el resultado buscado en pantalla:
+\end{pro}
+
+
+\begin{enumerate}[a)]
+\item trabajar con el programa anterior pero ahora con una matriz  que tenga inversa.
+ \item Dados dos números diferentes mostrar en pantalla el menor de ellos.
+ \item Dados dos números mostrar en pantalla el menor de ellos o si llegaran a ser iguales 
+ indacarlo también por pantalla.
+ \item Dado un número entero, decidir si es 
+ \subitem par (o impar) 
+ \subitem positivo (o negativo o cero)
+ \subitem mayor que 4
+% \item Dado una matriz $\in \mathbb{R}^{2x2}$ indicar en pantalla si existe o no su inversa.
+ \item Dado un sistema de dos ecuaciones lineales con dos incógnitas, dar su solución.
+\end{enumerate}
+
+
+\noindent
+BUCLES \newline
+Cualquier problema que requiera una estructura iterativa utilizará lo que llamamos 
+\textit{bucle}. Deberemos saber de antemano cuántas veces queremos repetir una acción.
+Veamos esta estructura en un ejemplo muy simple, vamos a mostrar en la pantalla 
+los números de 1 a 10. Hagamos previamente un diagrama de flujo.
+
+\setlength{\unitlength}{1cm}
+\begin{picture}(6,8)
+\put(3,6){\line(0,1){1}}
+\put(3,6){\line(1,0){4.5}}
+\put(3,7){\line(1,0){4.5}}
+\put(7.5,7){\line(0,-1){1}}
+\put(3.3,6.5){$Ingrese \ un \ nro.\ entero \ N$}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\put(5,6){\vector(0,-1){0.5}}
+\put(5,4.8){\circle{1.4}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\put(5.,4.1){\line(0,1){0.7}} 
+\put(4.3,4.8){\line(1,0){1.4}}
+\put(4.5,5){$j \ entre$}
+\put(4.7,4.4){$ 1 $}
+\put(5.2,4.4){$ N $}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\put(5,4.1){\vector(0,-1){0.5}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\put(8.,3){$message(``A \ tiene \ inversa'') $}
+\put(3,2.6){\line(0,1){1}}
+\put(3,2.6){\line(1,0){4}}
+\put(3,3.6){\line(1,0){4}}
+\put(7,3.6){\line(0,-1){1}}
+\put(4,3){$message(j) $}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\put(5,2.6){\vector(0,-1){0.5}}
+\put(5,2.1){\vector(-1,0){3}}
+\put(2,2.2){\vector(0,1){3.5}}
+\put(2,5.8){\vector(1,0){3.}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{picture}
+
+En este ejemplo las líneas de comandos son:
+
+\bigskip
+
+\noindent N$<$- \ 10 \newline
+\noindent for(j in 1:N) {message(n)}
+
+\bigskip
+
+\noindent
+Pruebe otros resultados, por ejemplo, que muestre los primeros cuadrados, los primeros múltiplos 
+de 17, etc
+
+\bigskip
+Veamos otro ejemplo algo más interesante. 
+Quiero mostrar en pantalla los primeros 20 términos de la sucesión de Fibonacci:
+\[
+ 0, 1, 1, 2, 3 , 5, 8, 13, 21, ...
+\]
+existe una fórmula que los genera iterativamente:
+\[
+ a_1 = 0; \ \ a_2=1; \ \ a_{n+2}=a_n + a_{n+1} 
+\]
+Esta última cuenta es la que debe aparecer en el bucle, veamos cómo hacerlo.
+Puedo crear de antemano un vector
+vacío de elementos para luego rellenar sus componentes,  la sentencia para este paso previo 
+es: 
+\[
+ V=c()  .
+\]
+Ahora debo hacer asignaciones. Las dos primeras están fijas
+V[1]=0
+V[2]=1.
+Las que siguen las debo generar con la fórmula, aquí comienza el proceso iterativo
+entonces. Quiero generar V[3], V[4], ..., V[20] con $V[n+2] = V[n] + V[n+1]$. 
+Entonces n variará entre 1 y 18. 
+Dentro del bucle R hará las siguientes asignaciones: \newline
+Para n=1
+\[
+ V[1+2] = V[1] + V[1+1]
+\]
+luego seguirá así:
+\begin{align*}
+  V[2+2] &= V[2] + V[2+1]  \ \ ( \text{ya lo tiene del paso anterior}) \\  
+ V[3+2] &= V[3] + V[3+1] \\
+V[4+2] &= V[4] + V[4+1] \\
+& \vdots \\
+V[18+2] &= V[18] + V[18+1]
+\end{align*}
+
+\bigskip
+
+\begin{pro}
+ Escriba el programa que genera los 20 primeros términos de la sucesión de 
+ Fibonacci.
+\end{pro}
+
+\bigskip
+
+\begin{pro}
+¿Cual cree que será el límite de la sucesión dada por  $a_n = \dfrac{n^2 -1500}{3n^2 + 1000}$?
+\end{pro}
+
+
+
+
+CONTADORES \newline
+También podemos utilizar este tipo de bucle para contar la cantidad de veces que aparece un 
+evento en un objeto matemático, 
+por ejemplo, contar la cantidad de números pares que hay en las componentes de un vector.
+
+
+
+\setlength{\unitlength}{1cm}
+\begin{picture}(6,10)
+\put(3,9){\line(0,1){1}}
+\put(3,9){\line(1,0){4.5}}
+\put(3,10){\line(1,0){4.5}}
+\put(7.5,10){\line(0,-1){1}}
+\put(3.3,9.5){$Ingrese \ un \ vector \ V$}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\put(5,9){\vector(0,-1){0.5}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\put(3,7.5){\line(0,1){1}}
+\put(3,8.5){\line(1,0){4.5}}
+\put(3,7.5){\line(1,0){4.5}}
+\put(7.5,8.5){\line(0,-1){1}}
+\put(3.3,8){$N \ <- \ length(V)$}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\put(5,7.5){\vector(0,-1){0.5}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\put(3,6){\line(0,1){1}}
+\put(3,6){\line(1,0){4.5}}
+\put(3,7){\line(1,0){4.5}}
+\put(7.5,7){\line(0,-1){1}}
+\put(4.5,6.5){$ M = 0 $}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\put(5,6){\vector(0,-1){0.5}}
+\put(5,4.8){\circle{1.4}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\put(5.,4.1){\line(0,1){0.7}} 
+\put(4.3,4.8){\line(1,0){1.4}}
+\put(4.5,5){$j \ entre$}
+\put(4.7,4.4){$ 1 $}
+\put(5.2,4.4){$ N $}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\put(5,4.1){\vector(0,-1){0.5}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\put(3,3.){\line(3,1){2}}
+\put(5,3.7){\line(3,-1){2}}
+\put(5,2.3){\line(3,1){2}}
+\put(3,3.){\line(3,-1){2}}
+\put(3.5,2.9){$ ¿ V[j] \ \%\% 2 \ == \ 0 ?$}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\put(5,2.3){\vector(0,-1){0.5}}
+\put(5.1,2.){$NO $}
+\put(5,1.8){\vector(-1,0){3}}
+\put(2,1.8){\vector(0,1){3.8}}
+\put(2,5.8){\vector(1,0){3.}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\put(7,3){\vector(1,0){0.5}}
+\put(7.1,3.1){$SI $}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\put(7.5,2.5){\line(0,1){1}}
+\put(7.5,3.5){\line(1,0){4.5}}
+\put(7.5,2.5){\line(1,0){4.5}}
+\put(12,3.5){\line(0,-1){1}}
+\put(8.5,3){$ M \ = \ M+1 ?$}
+\end{picture}
+
+
+En papel y con lápiz en mano, para el vector $(1,3,-2,0,5,7,8,\pi,0.5)$ trabaje 
+con el diagrama anterior. 
+Realice esta tarea imaginando que usted es el calculista que vive dentro de R y como 
+tal no le queda otra mas que hacer lo que su programador le indica, paso a paso.
+
+\begin{itemize}
+\item Dado un número entero decidir si es primo o no
+ \item Alguna vez alguien propuso la fórmula $n^2 + n + 41$ como generadora de todos los números 
+ primos. ¿Estuvo en lo cierto?
+ 
+\end{itemize}
+
+	\subsection{La paradoja del cumpleaños}
+
+¿Cómo dirías que es la probabilidad de que en un grupo de 23 personas dos de ellas cumplan años el mismo día?¿Coincide tu intuición con lo que dice la Matemática?
+
+\begin{enumerate}[a)]
+	
+	\item Represente los 365 días del año en un vector
+	
+	\item Tome una muestra aleatoria de tamaño 23 mediante el comando \texttt{sample()}
+	
+	\item Para saber si dos personas de la muestra cumplen el mismo día ensaye con la función \texttt{any.duplicated()}utilizando como argumento la muestra obtenida en b)
+	
+	\item Ahora repita el experimento n veces y calcule la frecuencia relativa del evento.
+	
+	\item Aumentando el tamaño de la muestra,¿es esperable que esta probabilidad aumente? ¿y si se toma un tamaño menor? Haga la prueba.
+	
+	\item ¿Cuál debería ser el tamaño de muestra para que la probabilidad de que haya por lo menos una coincidencia sea 1?
+	
+\end{enumerate}	
+
+\begin{itemize}
+\item Dado un número entero decidir si es primo o no
+ \item Alguna vez alguien propuso la fórmula $n^2 + n + 41$ como generadora de todos los números  primos. ¿Estuvo en lo cierto?
+\end{itemize}
+
+
+\end{document}
